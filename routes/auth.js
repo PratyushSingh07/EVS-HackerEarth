@@ -45,8 +45,9 @@ router.post('/signup',[
    body('name').isLength({ min: 3 }), 
    body('email').isEmail(),
    body('password').isLength({ min: 5 }),
-   body('phone_no').isLength({ min: 10, max:11 }),
+   body('phone_no').isLength({ min: 10, max:11}),
    body('address').isLength({ min: 3 }),
+   body('gender').exists()
 ],
 async(req,res)=>{
    const errors = validationResult(req);
