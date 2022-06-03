@@ -31,7 +31,7 @@ router.post('/login',[
         id:user.id
       }
     }
-    var authToken = jwt.sign(data, process.env.SECRET_KEY);
+    var authToken = jwt.sign(data, process.env.JWT_SECRET);
     success=true
     res.json({success,authToken})
   } catch(error){
@@ -78,7 +78,7 @@ async(req,res)=>{
         id:user.id
       }
     }
-    var authToken = jwt.sign(data, process.env.SECRET_KEY);
+    var authToken = jwt.sign(data, process.env.JWT_SECRET);
     success=true;
     res.json({success,authToken})
   }
