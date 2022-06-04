@@ -89,7 +89,7 @@ async(req,res)=>{
 })
 
 router.post('/login',[
-  body('email').isEmail(),
+  body('email','Enter a valid email').isEmail(),
   body('password','Password cannot be blank').exists()
 ],async(req,res)=>{
   try{
