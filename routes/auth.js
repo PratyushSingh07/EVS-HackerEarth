@@ -31,7 +31,7 @@ router.post('/login',[
         id:user.id
       }
     }
-    var authToken = jwt.sign(data, process.env.JWT_SECRET);
+    var authToken = jwt.sign(data, process.env.SECRET_KEY);
     success=true
     res.json({success,authToken})
   } catch(error){
@@ -78,13 +78,26 @@ async(req,res)=>{
         id:user.id
       }
     }
-    var authToken = jwt.sign(data, process.env.JWT_SECRET);
+    var authToken = jwt.sign(data, process.env.SECRET_KEY);
     success=true;
     res.json({success,authToken})
   }
   catch(error){
     console.error(error.message);
     res.status(500).send("Internal server error occured");
+  }
+})
+
+router.post('/login',[
+  body('email').isEmail(),
+  body('password','Password cannot be blank').exists()
+],async(req,res)=>{
+  try{
+    userId="todo"
+    const user=await User.findById(userId).select("-password")
+  }catch(error){
+    console.log(error.message);
+    res.status(500).send("Internal Server Error")
   }
 })
 
